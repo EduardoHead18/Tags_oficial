@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "tags_oficial",
+            "cwd": "tags_oficial",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tags_oficial (profile mode)",
+            "cwd": "tags_oficial",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "tags_oficial (release mode)",
+            "cwd": "tags_oficial",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

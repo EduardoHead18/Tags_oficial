@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762275134890",
+    "project_id": "tags-oficial-2f1e7",
+    "storage_bucket": "tags-oficial-2f1e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762275134890:android:d725da41f43cc691737fd3",
+        "android_client_info": {
+          "package_name": "com.tags.tags_oficial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762275134890-p5t663osj6m9rcsjilujbrcdnonqjqpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfAXmPbPUgQ696z8Ve6lk-FQQJq3SgBPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762275134890-p5t663osj6m9rcsjilujbrcdnonqjqpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
