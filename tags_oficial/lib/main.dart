@@ -7,8 +7,6 @@ import 'package:tags_oficial/pages/tabs.dart';
 import 'package:tags_oficial/pages/tags.dart';
 import 'package:tags_oficial/pages/ubicacion.dart';
 
-import '../class/usuarios.dart';
-
 //void main() => runApp(MyApp());
 
 Future<void> main() async {
