@@ -19,6 +19,20 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
+/*
+dataUser() async {
+  final ref = FirebaseDatabase.instance.reference();
+  //obtener usuario
+  final snapshot1 = await ref.child('usuarios/usuario1/nombre_usuario').get();
+  if (snapshot1.exists) {
+    return Text("Buenas Tardes " + snapshot1.value,
+        style: TextStyle(fontSize: 30, color: colores.textSecondaryColor));
+  }
+}
+
+Image _imagen() => Image.asset('assets/dog2.png');
+
+*/
 Widget _bodyRealTimeDB() {
   return Center(
     child: StreamBuilder<Event>(
@@ -49,7 +63,7 @@ Widget _bodyRealTimeDB() {
   );
 }
 
-Text _nombre(String name) => Text("Buenas Tardes: " + name.toString(),
+Text _nombre(String name) => Text("Buen dia " + name.toString(),
     style: TextStyle(fontSize: 30, color: colores.textSecondaryColor));
 
 Image _imagen() => Image.asset('assets/dog2.png');
