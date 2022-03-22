@@ -31,6 +31,7 @@ class _LoginState extends State<Login> {
     void dispose() {
       // Limpia el controlador cuando el Widget se descarte
       controllerUserName.dispose();
+      controllerPass.dispose();
       super.dispose();
     }
   }
@@ -53,6 +54,10 @@ class _LoginState extends State<Login> {
               _txtContra(),
               _botonMostrar(),
               _botonIngresar(),
+              Divider(
+                height: 20,
+                color: Colors.white,
+              ),
             ],
           ),
         ),
@@ -78,7 +83,6 @@ class _LoginState extends State<Login> {
         child: TextFormField(
           //controlador del nombre
           controller: controllerUserName,
-          //initialValue: _usuario,
           decoration: InputDecoration(
               labelText: 'Usuario',
               labelStyle: TextStyle(
@@ -107,9 +111,8 @@ class _LoginState extends State<Login> {
     return Container(
         padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0),
         child: TextFormField(
-          //controlador del nombre
+          //controlador de la contraseña
           controller: controllerPass,
-          // initialValue: _contra,
           decoration: InputDecoration(
               labelText: 'Contraseña',
               labelStyle: TextStyle(
@@ -188,8 +191,8 @@ class _LoginState extends State<Login> {
                         );
                       } else {
                         Fluttertoast.showToast(
-                            msg: "Error verifique el usuario o contraseña",
-                            timeInSecForIosWeb: 5);
+                          msg: "Error verifique el usuario o contraseña",
+                        );
                       }
                     }
                   }
