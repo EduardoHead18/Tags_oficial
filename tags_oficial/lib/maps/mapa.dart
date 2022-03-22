@@ -105,7 +105,7 @@ class _UbicacionState extends State<Ubicacion> {
                   horizontal: 12.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.yellowAccent,
+                  color: Color.fromARGB(255, 179, 5, 5),
                   borderRadius: BorderRadius.circular(20.0),
                   boxShadow: const [
                     BoxShadow(
