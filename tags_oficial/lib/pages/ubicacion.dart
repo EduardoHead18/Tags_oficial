@@ -1,15 +1,28 @@
 import 'dart:math';
+import 'package:animate_do/animate_do.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tags_oficial/maps/directions_model.dart';
 
-class Ubicacion extends StatelessWidget {
+import '../class/usuarios.dart';
+import '../colores/colores.dart';
+
+class Ubicacion extends StatefulWidget {
+  @override
+  State<Ubicacion> createState() => _UbicacionState();
+}
+
+class _UbicacionState extends State<Ubicacion> {
   late GoogleMapController _mapController;
   Directions? _info;
   late Dio _dio;
   final LatLng Puntoinicio = LatLng(16.90998093016416, -92.09027151281458);
-  final LatLng Destino = LatLng(16.906696116767225, -92.09336141729014);
+  late double latitud = 16.726988;
+  late double longitud = -92.0371255;
+
+  final LatLng Destino = LatLng(16.726988, -92.0371255);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +30,7 @@ class Ubicacion extends StatelessWidget {
         appBar: AppBar(
           centerTitle: false,
           title: const Text('Buscando Mochila'),
+          //backgroundColor: Color.fromARGB(255, 255, 255, 255),
           actions: [
             TextButton(
               onPressed: () => _mapController.animateCamera(
@@ -45,59 +59,71 @@ class Ubicacion extends StatelessWidget {
                 ),
               ),
               style: TextButton.styleFrom(
-                primary: Colors.yellow,
+                primary: Color.fromARGB(255, 177, 8, 8),
                 textStyle: const TextStyle(fontWeight: FontWeight.w600),
               ),
               child: const Text('DEST'),
-            )
+            ),
           ],
         ),
-        body: _body(),
+        body: SingleChildScrollView(child: _body()),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.zoom_out_map),
             onPressed: () {
               _centerView();
+              Divider(
+                height: 20,
+                color: Colors.white,
+              );
             }));
   }
 
   //Mostrar el mapa en pantalla
   Widget _body() {
-    return Stack(alignment: Alignment.center, children: [
-      GoogleMap(
-        initialCameraPosition: CameraPosition(target: Puntoinicio, zoom: 12),
-        markers: _createMarkers(),
-        onMapCreated: _createMapa,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-      ),
-      Positioned(
-        top: 20.0,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 6.0,
-            horizontal: 12.0,
+    return Center(
+      child: Container(
+        width: 300,
+        height: 370,
+        child: Stack(alignment: Alignment.center, children: [
+          GoogleMap(
+            initialCameraPosition:
+                CameraPosition(target: Puntoinicio, zoom: 12),
+            markers: _createMarkers(),
+            onMapCreated: _createMapa,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
           ),
-          decoration: BoxDecoration(
-            color: Colors.yellowAccent,
-            borderRadius: BorderRadius.circular(20.0),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black26,
-                offset: Offset(0, 2),
-                blurRadius: 6.0,
-              )
-            ],
-          ),
-          child: Text(
-            '${_info?.totalDistance}, ${_info?.totalDuration}',
-            style: const TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w600,
+          Positioned(
+            top: 20.0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 12.0,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.yellowAccent,
+                borderRadius: BorderRadius.circular(20.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
+                    blurRadius: 6.0,
+                  )
+                ],
+              ),
+              child: Text(
+                '${_info?.totalDistance}, ${_info?.totalDuration}',
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
-        ),
+          _objetoMascota()
+        ]),
       ),
-    ]);
+    );
   }
 
   //Colocar marcacion de ambos sitios
@@ -145,7 +171,44 @@ class Ubicacion extends StatelessWidget {
     var cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
     _mapController.animateCamera(cameraUpdate);
   }
+
+  Widget _objetoMascota() {
+    return Center(
+      child: StreamBuilder<Event>(
+        stream: FirebaseDatabase.instance
+            .reference()
+            .child("usuarios")
+            .child("usuario1")
+            .onValue,
+        builder: (context, evento) {
+          if (!evento.hasData)
+            return CircularProgressIndicator(color: Colors.deepPurple);
+          final Registro r = Registro.fromMap(evento.data?.snapshot.value);
+          return Center(
+            child: FadeInDown(
+              child: Container(
+                padding: const EdgeInsets.all(38),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("objetivo a localizar"),
+                      _objeto_mascota(r.objeto_mascota)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Text _objeto_mascota(String name) => Text(name.toString(),
+      style: TextStyle(fontSize: 30, color: colores.textSecondaryColor));
 }
+
 
 
 
