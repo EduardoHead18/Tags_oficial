@@ -1,38 +1,25 @@
-/*class NombreUsuario {
-  String nombre = "";
-  late DocumentReference referencia;
-
-  //NameUs(this.nombre);
-
-  NombreUsuario.fromMap(
-      Map<String, dynamic> map) //, {required this.referencia})
-      : assert(map['nombre'] != null),
-        nombre = map['nombre'];
-
-  NombreUsuario.fromSnapshot(AsyncSnapshot snapshot)
-      : this.fromMap(snapshot.data()); //, referencia: snapshot.requireData);
-  /*: assert(snapshot.get),
-        nombre = snapshot.get!;*/
-}*/
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Registro {
   //late final String NombreUusario;
   late String nombre;
   late String password;
+  late double destino;
+  late String objeto_mascota;
   // ignore: non_constant_identifier_names
   late String nombre_usuario;
   //late final String pass;
 
   Registro.fromMap(dynamic map) {
     assert(map['nombre'] != null);
-    assert(map['password'] != null);
-    assert(map['nombre_usuario'] != null);
+    assert(map['objeto_mascota'] != null);
     nombre = map['nombre'];
-    password = map['password'];
-    nombre_usuario = map['nombre_usuario'];
+    objeto_mascota = map['objeto_mascota'];
+    //nombre_usuario = map['nombre_usuario'];
+    //destino = map['destino'];
 
     @override
-    String toString() =>
-        "usuarios<$nombre>,usuarios<$password>,usuarios<$nombre_usuario>";
+    String toString() => "usuarios<$nombre>,usuarios<$objeto_mascota>";
   }
 }
