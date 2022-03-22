@@ -1,9 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tags.tags_oficial">
+       <!--Permisos para poder acceder a la ubicacion del dispositivo-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="tags_oficial"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyD8HvgoP8tPaEf55ZElXWiyZHZJwnzxoAY"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
