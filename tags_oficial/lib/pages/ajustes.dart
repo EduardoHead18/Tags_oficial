@@ -11,6 +11,7 @@ class Ajustes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           title: Text("Ajustes",
               style:
@@ -38,7 +39,7 @@ class Ajustes extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 80, vertical: 15.0),
                     label: Text(
-                      "Modificar Cuenta",
+                      "Modificar cuenta",
                       style: TextStyle(
                           fontSize: 20, color: colores.textSecondaryColor),
                     ),
@@ -56,16 +57,14 @@ class Ajustes extends StatelessWidget {
                   ),
                   RaisedButton.icon(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          'login', (Route<dynamic> route) => false);
                     },
                     color: Colors.white,
                     padding:
                         EdgeInsets.symmetric(horizontal: 95, vertical: 15.0),
                     label: Text(
-                      "Cerrar Sesión",
+                      "Cerrar sesión",
                       style: TextStyle(
                           fontSize: 20, color: colores.textSecondaryColor),
                     ),

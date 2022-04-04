@@ -173,14 +173,18 @@ class _LoginState extends State<Login> {
                 final result = await InternetAddress.lookup('google.com');
                 if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
                   if (_formKey.currentState!.validate()) {
-                    final ref = FirebaseDatabase.instance.reference();
+                    final referencia = FirebaseDatabase.instance.reference();
+
                     //obtener usuario
-                    final snapshot1 = await ref
-                        .child('usuarios/usuario1/nombre_usuario')
+
+                    final snapshot1 = await referencia
+                        .child('Tl3LuaHhP3YjpLvoVrSs24XcTuS2/usuario1/usuario')
                         .get();
-                    //obtener contraseña
-                    final snapshot2 =
-                        await ref.child('usuarios/usuario1/password').get();
+                    //contraseña
+
+                    final snapshot2 = await referencia
+                        .child('Tl3LuaHhP3YjpLvoVrSs24XcTuS2/usuario1/contra')
+                        .get();
                     if (snapshot1.exists && snapshot2.exists) {
                       if (snapshot1.value == controllerUserName.text &&
                           snapshot2.value == controllerPass.text) {

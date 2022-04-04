@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tags_oficial/colores/colores.dart';
 import 'package:tags_oficial/pages/tabs.dart';
 
+import '../class/usuarios.dart';
+
 void main() => runApp(Agregar());
 
 class Agregar extends StatefulWidget {
@@ -19,17 +21,12 @@ class _AgregarState extends State<Agregar> {
   String _contra = "";
   String _confirmarContra = "";
   //controlador para el textFormField.
-  final controllerUserName = TextEditingController();
-  final controllerPass = TextEditingController();
+
   final controllerNameClient = TextEditingController();
-  final controllerConfirmarPass = TextEditingController();
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
-    controllerUserName.dispose();
-    controllerPass.dispose();
     controllerNameClient.dispose();
-    controllerConfirmarPass.dispose();
     super.dispose();
   }
 
@@ -37,6 +34,7 @@ class _AgregarState extends State<Agregar> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           title: Text("Modificar",
               style:
@@ -55,9 +53,6 @@ class _AgregarState extends State<Agregar> {
                       color: Colors.white,
                     ),
                     _txtNombreCliente(),
-                    _txtUsuario(),
-                    _txtContra(),
-                    _txtConfirmarContra(),
                     Divider(
                       height: 20,
                       color: Colors.white,
@@ -111,96 +106,6 @@ class _AgregarState extends State<Agregar> {
         ));
   }
 
-  Widget _txtUsuario() {
-    return Container(
-        padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0),
-        child: TextFormField(
-          //controlador del nombre
-          controller: controllerUserName,
-          decoration: InputDecoration(
-              labelText: 'Nombre de usuario',
-              labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green)),
-              hintText: 'Ingresa tu nombre de usuario'),
-          keyboardType: TextInputType.text,
-          validator: (valor) {
-            if (valor!.isEmpty) {
-              return "Escriba un nombre de usuario";
-            }
-            return null;
-          },
-          onSaved: (valor) {
-            return setState(() {
-              _usuario = valor!;
-            });
-          },
-        ));
-  }
-
-  Widget _txtContra() {
-    return Container(
-        padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0),
-        child: TextFormField(
-          //controlador de la contraseña
-          controller: controllerPass,
-          decoration: InputDecoration(
-              labelText: 'Contraseña',
-              labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green)),
-              hintText: 'Ingresa tu contraseña de usuario'),
-          keyboardType: TextInputType.visiblePassword,
-          validator: (valor) {
-            if (valor!.isEmpty) {
-              return "Escriba una contraseña";
-            }
-            return null;
-          },
-          onSaved: (valor) {
-            return setState(() {
-              _contra = valor!;
-            });
-          },
-        ));
-  }
-
-  Widget _txtConfirmarContra() {
-    return Container(
-        padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0),
-        child: TextFormField(
-          //controlador de la contraseña
-          controller: controllerConfirmarPass,
-          decoration: InputDecoration(
-              labelText: 'Confirmar contraseña',
-              labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green)),
-              hintText: 'Ingresa tu contraseña de usuario'),
-          keyboardType: TextInputType.visiblePassword,
-          validator: (valor) {
-            if (valor!.isEmpty) {
-              return "Debe confirmar su contraseña";
-            }
-            return null;
-          },
-          onSaved: (valor) {
-            return setState(() {
-              _contra = valor!;
-            });
-          },
-        ));
-  }
-
   Widget _botonGuardar() {
     return Container(
         padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0),
@@ -213,21 +118,14 @@ class _AgregarState extends State<Agregar> {
           child: TextButton(
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                if (controllerPass.text == controllerConfirmarPass.text) {
-                  DatabaseReference ref = FirebaseDatabase.instance.reference();
-                  await ref.update({
-                    "usuarios/usuario1/nombre": controllerNameClient.text,
-                    "usuarios/usuario1/nombre_usuario": controllerUserName.text,
-                    "usuarios/usuario1/password": controllerPass.text,
-                  });
-                  Fluttertoast.showToast(msg: "Datos Guardados");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Tabs()));
-                } else {
-                  Fluttertoast.showToast(msg: "Error en la contraseña");
-                }
+                DatabaseReference ref = FirebaseDatabase.instance.reference();
+                await ref.update({
+                  "Tl3LuaHhP3YjpLvoVrSs24XcTuS2/usuario1/nombre":
+                      controllerNameClient.text,
+                });
+                Fluttertoast.showToast(msg: "Datos Guardados");
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    'tabs', (Route<dynamic> route) => false);
               }
             },
             child: Center(
@@ -254,8 +152,8 @@ class _AgregarState extends State<Agregar> {
           elevation: 7.0,
           child: TextButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) => Tabs()));
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  'tabs', (Route<dynamic> route) => false);
             },
             child: Center(
               child: Text(
@@ -268,5 +166,14 @@ class _AgregarState extends State<Agregar> {
             ),
           ),
         ));
+  }
+
+  obtener() async {
+    final ref = FirebaseDatabase.instance.reference();
+    //obtener usuario
+    final snapshot1 = await ref
+        .child('"Tl3LuaHhP3YjpLvoVrSs24XcTuS2/usuario1/nombre_usuario"')
+        .get();
+    return snapshot1.value;
   }
 }

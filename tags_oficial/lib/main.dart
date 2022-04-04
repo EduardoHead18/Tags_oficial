@@ -5,7 +5,6 @@ import 'package:tags_oficial/pages/home.dart';
 import 'package:tags_oficial/pages/login.dart';
 import 'package:tags_oficial/pages/tabs.dart';
 import 'package:tags_oficial/pages/tags.dart';
-import 'package:tags_oficial/pages/ubicacion.dart';
 
 //void main() => runApp(MyApp());
 
@@ -29,8 +28,8 @@ class MyApp extends StatelessWidget {
         'login': (BuildContext context) => Login(),
         'tabs': (BuildContext context) => Tabs(),
         'home': (BuildContext context) => Homepage(),
-        'bluetooth': (BuildContext context) => Bluetooth(),
-        'ubicacion': (BuildContext context) => Ubicacion(),
+        'bluetooth': (BuildContext context) => MainPage(),
+        //'ubicacion': (BuildContext context) => Ubicacion(),
         'tags': (BuildContext context) => Tags()
       },
     );

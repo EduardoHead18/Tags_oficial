@@ -10,6 +10,7 @@ class Colores {
   Color? appBarColor;
   Color? iconColor;
   Color? iconSecondaryColor;
+  Color? tap;
 
   Colores() {
     backgroundSecondaryColor = Color(0xFF8BC34A);
@@ -18,5 +19,6 @@ class Colores {
     appBarColor = Color(0xFFA5D6A7);
     iconColor = Color(0xFFFFFFFF);
     iconSecondaryColor = Color(0xFFCFD8DC);
+    tap = Color.fromARGB(255, 0, 151, 215);
   }
 }

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:tags_oficial/colores/colores.dart';
 
 class ChatPage extends StatefulWidget {
   final BluetoothDevice server;
@@ -112,34 +113,52 @@ class _ChatPage extends State<ChatPage> {
     final serverName = widget.server.name ?? "Unknown";
     return Scaffold(
       appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
           title: (isConnecting
-              ? Text('Conectando con  ' + serverName + '...')
+              ? Text('Conectando con  ' + serverName + '...',
+                  style: TextStyle(
+                      fontSize: 30, color: colores.textSecondaryColor))
               : isConnected
-                  ? Text('Sonido en Vivo ' + serverName)
-                  : Text('Chat log with ' + serverName))),
+                  ? Text('Sonido en Vivo ' + serverName,
+                      style: TextStyle(
+                          fontSize: 30, color: colores.textSecondaryColor))
+                  : Text('Chat log with ' + serverName,
+                      style: TextStyle(
+                          fontSize: 30, color: colores.textSecondaryColor)))),
       body: SafeArea(
         child: Column(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(60),
               width: double.infinity,
               child: FittedBox(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FlatButton(
+                    FloatingActionButton(
                       onPressed: isConnected ? () => _sendMessage('o') : null,
-                      child: ClipOval(child: Image.asset('assets/encender.png')),
+                      backgroundColor: colores.backgroundSecondaryColor,
+                      child: const Icon(
+                        Icons.volume_up,
+                        size: 25,
+                      ),
                     ),
-                    FlatButton(
+                    FloatingActionButton(
                       onPressed: isConnected ? () => _sendMessage('c') : null,
-                      child: ClipOval(child: Image.asset('assets/apagar.png')),
+                      backgroundColor: Colors.red,
+                      child: const Icon(
+                        Icons.volume_off,
+                        size: 25,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-          
-           /* Flexible(
+
+            /* Flexible(
               child: ListView(
                   padding: const EdgeInsets.all(12.0),
                   controller: listScrollController,
@@ -166,7 +185,7 @@ class _ChatPage extends State<ChatPage> {
                     ),
                   ),
                 ),
-               /* Container(
+                /* Container(
                   margin: const EdgeInsets.all(8.0),
                   child: IconButton(
                       icon: const Icon(Icons.send),

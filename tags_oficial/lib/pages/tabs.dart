@@ -4,7 +4,8 @@ import 'package:tags_oficial/colores/colores.dart';
 import 'package:tags_oficial/pages/ajustes.dart';
 import 'package:tags_oficial/pages/home.dart';
 import 'package:tags_oficial/pages/tags.dart';
-import 'package:tags_oficial/pages/ubicacion.dart';
+
+import 'bluetooth.dart';
 
 class Tabs extends StatefulWidget {
   //Tabs({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _TabsState extends State<Tabs> {
         },*/
         controller: _controller,
         physics: NeverScrollableScrollPhysics(),
-        children: [Homepage(), Ubicacion(), Tags(), Ajustes()],
+        children: [Homepage(), /*Ubicacion(),*/ MainPage(), Tags(), Ajustes()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -68,6 +69,7 @@ class _TabsState extends State<Tabs> {
               )),
 
           //2
+          /*
           BottomNavigationBarItem(
               icon: Icon(Icons.location_on,
                   color: colores.iconSecondaryColor, size: 30),
@@ -78,7 +80,22 @@ class _TabsState extends State<Tabs> {
                 color: colores.iconColor,
                 size: 30,
               )),
+
+              */
+
           //3
+          BottomNavigationBarItem(
+              icon: Icon(Icons.bluetooth,
+                  color: colores.iconSecondaryColor, size: 30),
+              backgroundColor: colores.appBarColor,
+              label: "",
+              activeIcon: Icon(
+                Icons.bluetooth,
+                color: colores.iconColor,
+                size: 30,
+              )),
+
+          //4
           BottomNavigationBarItem(
               icon: Icon(Icons.add_chart_rounded,
                   color: colores.iconSecondaryColor, size: 30),
@@ -89,7 +106,8 @@ class _TabsState extends State<Tabs> {
                 color: colores.iconColor,
                 size: 30,
               )),
-          //4
+
+          //5
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings,

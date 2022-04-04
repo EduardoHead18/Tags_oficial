@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+import '../colores/colores.dart';
 import './BluetoothDeviceListEntry.dart';
 
 class DiscoveryPage extends StatefulWidget {
@@ -76,9 +77,16 @@ class _DiscoveryPage extends State<DiscoveryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: isDiscovering
-            ? Text('Buscando Dispositivos')
-            : Text('Buscar Dispositivos'),
+            ? Text('Buscando Dispositivos',
+                style:
+                    TextStyle(fontSize: 17, color: colores.textSecondaryColor))
+            : Text('Buscar Dispositivos',
+                style:
+                    TextStyle(fontSize: 17, color: colores.textSecondaryColor)),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        centerTitle: true,
         actions: <Widget>[
           isDiscovering
               ? FittedBox(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import '../colores/colores.dart';
 import './ChatPage.dart';
 import './DiscoveryPage.dart';
 import './SelectBondedDevicePage.dart';
@@ -76,7 +77,7 @@ class _MainPage extends State<MainPage> {
   @override
   void dispose() {
     FlutterBluetoothSerial.instance.setPairingRequestHandler(null);
-   // _collectingTask?.dispose();
+    // _collectingTask?.dispose();
     _discoverableTimeoutTimer?.cancel();
     super.dispose();
   }
@@ -85,7 +86,11 @@ class _MainPage extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bluetooth'),
+        elevation: 0,
+        title: Text("Ajustes",
+            style: TextStyle(fontSize: 30, color: colores.textSecondaryColor)),
+        centerTitle: true,
+        backgroundColor: Colors.white,
       ),
       body: Container(
         child: ListView(
@@ -253,7 +258,6 @@ class _MainPage extends State<MainPage> {
                 },
               ),
             ),
- 
           ],
         ),
       ),
@@ -269,6 +273,4 @@ class _MainPage extends State<MainPage> {
       ),
     );
   }
-
- 
 }

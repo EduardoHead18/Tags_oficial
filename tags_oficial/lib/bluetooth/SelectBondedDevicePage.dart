@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-
+import 'package:tags_oficial/colores/colores.dart';
 import './BluetoothDeviceListEntry.dart';
 
 class SelectBondedDevicePage extends StatefulWidget {
@@ -121,17 +121,17 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
         .toList();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Seleciona Dispositivo'),
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: Text("Selecciona el Dispositivo",
+            style: TextStyle(fontSize: 17, color: colores.textSecondaryColor)),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        centerTitle: true,
         actions: <Widget>[
           _isDiscovering
               ? FittedBox(
                   child: Container(
                     margin: new EdgeInsets.all(16.0),
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
-                      ),
-                    ),
                   ),
                 )
               : IconButton(

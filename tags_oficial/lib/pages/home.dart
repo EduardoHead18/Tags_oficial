@@ -38,7 +38,7 @@ Widget _bodyRealTimeDB() {
     child: StreamBuilder<Event>(
       stream: FirebaseDatabase.instance
           .reference()
-          .child("usuarios")
+          .child("Tl3LuaHhP3YjpLvoVrSs24XcTuS2")
           .child("usuario1")
           .onValue,
       builder: (context, evento) {
@@ -51,8 +51,15 @@ Widget _bodyRealTimeDB() {
               padding: const EdgeInsets.all(38),
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [_nombre(r.nombre), _imagen()],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _nombre(r.nombre),
+                    Divider(
+                      color: Color.fromARGB(0, 255, 255, 255),
+                      height: 150,
+                    ),
+                    _imagen()
+                  ],
                 ),
               ),
             ),
@@ -63,7 +70,7 @@ Widget _bodyRealTimeDB() {
   );
 }
 
-Text _nombre(String name) => Text("Buen dia " + name.toString(),
+Text _nombre(String name) => Text("Hola, Bienvenido " + name.toString(),
     style: TextStyle(fontSize: 30, color: colores.textSecondaryColor));
 
 Image _imagen() => Image.asset('assets/dog2.png');

@@ -29,6 +29,7 @@ class _TagsState extends State<Tags> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           title: Text("Tags",
               style:
@@ -97,7 +98,7 @@ class _TagsState extends State<Tags> {
             onPressed: () async {
               DatabaseReference ref = FirebaseDatabase.instance.reference();
               await ref.update({
-                "usuarios/usuario1/objeto_mascota":
+                "Tl3LuaHhP3YjpLvoVrSs24XcTuS2/usuario1/objeto_mascota":
                     controllerNombreMascota.text,
               });
               Fluttertoast.showToast(msg: "Datos Guardados");
