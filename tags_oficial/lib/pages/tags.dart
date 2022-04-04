@@ -73,7 +73,7 @@ class _TagsState extends State<Tags> {
           //controlador del nombre
           controller: controllerNombreMascota,
           decoration: InputDecoration(
-              labelText: 'Nombre del objeto u mascota',
+              labelText: 'Nombre del objeto',
               labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
